@@ -53,11 +53,13 @@ export function Header() {
             <div className="text-xs text-gray-500">{user?.email || "admin@goia.local"}</div>
           </div>
           <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
-            </DropdownMenuTrigger>
+            <DropdownMenuTrigger
+              render={(props) => (
+                <Button variant="ghost" size="icon" {...props}>
+                  <User className="h-5 w-5" />
+                </Button>
+              )}
+            />
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />

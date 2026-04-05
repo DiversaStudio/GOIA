@@ -1,38 +1,308 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: var(--font-geist-sans), sans-serif;
-  background: #f8fafc;
-}
+/* GOIA Design System - Professional AI Governance Platform */
+/* Style: Minimal "Nothing" inspired aesthetic */
 
-body.dark {
-  background: hsl(240 10% 3.9%);
-  color: hsl(0 0% 95%);
-}
+@layer base {
+  :root {
+    /* Light Mode - Clean Professional */
+    --background: oklch(0.995 0 0);
+    --foreground: oklch(0.13 0.02 260);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.13 0.02 260);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.13 0.02 260);
+    
+    /* Primary - Deep Navy/Black for authority */
+    --primary: oklch(0.13 0.02 260);
+    --primary-foreground: oklch(0.99 0 0);
+    
+    /* Secondary - Subtle gray */
+    --secondary: oklch(0.96 0.005 260);
+    --secondary-foreground: oklch(0.25 0.02 260);
+    
+    /* Muted - Subtle backgrounds */
+    --muted: oklch(0.97 0.005 260);
+    --muted-foreground: oklch(0.45 0.02 260);
+    
+    /* Accent - Professional Blue */
+    --accent: oklch(0.55 0.18 260);
+    --accent-foreground: oklch(0.99 0 0);
+    
+    /* Status Colors */
+    --destructive: oklch(0.55 0.22 25);
+    --destructive-foreground: oklch(0.99 0 0);
+    --success: oklch(0.55 0.18 145);
+    --success-foreground: oklch(0.99 0 0);
+    --warning: oklch(0.75 0.18 85);
+    --warning-foreground: oklch(0.15 0 0);
+    --info: oklch(0.55 0.18 260);
+    --info-foreground: oklch(0.99 0 0);
+    
+    /* Borders & Inputs */
+    --border: oklch(0.92 0.005 260);
+    --input: oklch(0.92 0.005 260);
+    --ring: oklch(0.55 0.18 260);
+    
+    /* Sidebar */
+    --sidebar: oklch(0.97 0.005 260);
+    --sidebar-foreground: oklch(0.25 0.02 260);
+    --sidebar-primary: oklch(0.55 0.18 260);
+    --sidebar-primary-foreground: oklch(0.99 0 0);
+    --sidebar-accent: oklch(0.94 0.01 260);
+    --sidebar-accent-foreground: oklch(0.25 0.02 260);
+    --sidebar-border: oklch(0.92 0.005 260);
+    --sidebar-ring: oklch(0.55 0.18 260);
+    
+    /* Chart Colors */
+    --chart-1: oklch(0.55 0.18 260);
+    --chart-2: oklch(0.65 0.15 145);
+    --chart-3: oklch(0.70 0.15 85);
+    --chart-4: oklch(0.55 0.18 25);
+    --chart-5: oklch(0.60 0.12 320);
+    
+    --radius: 0.5rem;
+  }
 
-/* Custom styles for GOIA */
-.announcement-bar {
-  background: #1e293b;
-  border-bottom: 1px solid #334155;
-}
+  .dark {
+    /* Dark Mode - Sophisticated Dark */
+    --background: oklch(0.12 0.01 260);
+    --foreground: oklch(0.95 0.01 260);
+    --card: oklch(0.16 0.01 260);
+    --card-foreground: oklch(0.95 0.01 260);
+    --popover: oklch(0.16 0.01 260);
+    --popover-foreground: oklch(0.95 0.01 260);
+    
+    /* Primary - Clean White */
+    --primary: oklch(0.95 0.01 260);
+    --primary-foreground: oklch(0.12 0.01 260);
+    
+    /* Secondary - Subtle dark gray */
+    --secondary: oklch(0.22 0.01 260);
+    --secondary-foreground: oklch(0.90 0.01 260);
+    
+    /* Muted */
+    --muted: oklch(0.20 0.01 260);
+    --muted-foreground: oklch(0.55 0.01 260);
+    
+    /* Accent - Vibrant Blue */
+    --accent: oklch(0.60 0.18 260);
+    --accent-foreground: oklch(0.12 0.01 260);
+    
+    /* Status Colors - Dark mode */
+    --destructive: oklch(0.60 0.22 25);
+    --destructive-foreground: oklch(0.99 0 0);
+    --success: oklch(0.60 0.18 145);
+    --success-foreground: oklch(0.12 0 0);
+    --warning: oklch(0.75 0.18 85);
+    --warning-foreground: oklch(0.12 0 0);
+    
+    /* Borders & Inputs */
+    --border: oklch(0.25 0.01 260);
+    --input: oklch(0.25 0.01 260);
+    --ring: oklch(0.60 0.18 260);
+    
+    /* Sidebar - Dark */
+    --sidebar: oklch(0.14 0.01 260);
+    --sidebar-foreground: oklch(0.90 0.01 260);
+    --sidebar-primary: oklch(0.60 0.18 260);
+    --sidebar-primary-foreground: oklch(0.12 0 0);
+    --sidebar-accent: oklch(0.22 0.01 260);
+    --sidebar-accent-foreground: oklch(0.90 0.01 260);
+    --sidebar-border: oklch(0.25 0.01 260);
+    --sidebar-ring: oklch(0.60 0.18 260);
+    
+    /* Chart Colors */
+    --chart-1: oklch(0.60 0.18 260);
+    --chart-2: oklch(0.70 0.15 145);
+    --chart-3: oklch(0.75 0.15 85);
+    --chart-4: oklch(0.60 0.18 25);
+    --chart-5: oklch(0.65 0.12 320);
+  }
 
-@media (prefers-color-scheme: dark) {
-  body.dark {
-    background: hsl(240 10% 3.9%);
-    color: hsl(0 0% 95%);
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  html {
+    @apply font-sans scroll-smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: oklch(0.70 0.01 260);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.55 0.01 260);
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: oklch(0.35 0.01 260);
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: oklch(0.45 0.01 260);
   }
 }
 
-@media (min-width: 1024px) {
-  body {
-    font-size: 16px;
+/* GOIA Custom Utilities */
+@layer utilities {
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-primary;
+    background-size: 200% auto;
+    animation: gradient 3s ease infinite;
   }
+
+  @keyframes gradient {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+  }
+
+  /* Subtle dot pattern background */
+  .bg-dots {
+    background-image: radial-gradient(circle at 1px 1px, oklch(0.80 0.005 260) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  .dark .bg-dots {
+    background-image: radial-gradient(circle at 1px 1px, oklch(0.30 0.01 260) 1px, transparent 0);
+  }
+
+  /* Glass effect */
+  .glass {
+    @apply bg-background/80 backdrop-blur-xl border border-border/50;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-200 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5;
+  }
+
+  /* Pillar specific colors */
+  .pillar-compliance {
+    --pillar-color: oklch(0.55 0.18 260);
+  }
+
+  .pillar-privacy {
+    --pillar-color: oklch(0.55 0.18 145);
+  }
+
+  .pillar-fairness {
+    --pillar-color: oklch(0.65 0.15 85);
+  }
+
+  .pillar-audit {
+    --pillar-color: oklch(0.55 0.18 25);
+  }
+
+  /* Status colors */
+  .status-success { @apply text-[var(--success)] bg-[var(--success)]/10; }
+  .status-warning { @apply text-[var(--warning)] bg-[var(--warning)]/10; }
+  .status-error { @apply text-[var(--destructive)] bg-[var(--destructive)]/10; }
+  .status-info { @apply text-[var(--info)] bg-[var(--info)]/10; }
+
+  /* Animation utilities */
+  .animate-in {
+    animation: animate-in 0.3s ease-out;
+  }
+
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-out;
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* Staggered animation */
+  .stagger-1 { animation-delay: 0.05s; }
+  .stagger-2 { animation-delay: 0.1s; }
+  .stagger-3 { animation-delay: 0.15s; }
+  .stagger-4 { animation-delay: 0.2s; }
+  .stagger-5 { animation-delay: 0.25s; }
 }
 
-@media (min-width: 1280px) {
-  body {
-    font-size: 18px;
+/* Custom Components */
+@layer components {
+  /* Page Header */
+  .page-header {
+    @apply flex flex-col gap-1 pb-6;
+  }
+
+  .page-title {
+    @apply text-2xl font-semibold tracking-tight;
+  }
+
+  .page-description {
+    @apply text-muted-foreground;
+  }
+
+  /* Stat Card */
+  .stat-card {
+    @apply relative overflow-hidden rounded-xl border bg-card p-6 transition-all duration-200;
+  }
+
+  .stat-card::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-200;
+  }
+
+  .stat-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Data Table */
+  .data-table {
+    @apply w-full caption-bottom text-sm;
+  }
+
+  .data-table th {
+    @apply h-12 px-4 text-left align-middle font-medium text-muted-foreground;
+  }
+
+  .data-table td {
+    @apply p-4 align-middle;
+  }
+
+  /* Sidebar Navigation Item */
+  .nav-item {
+    @apply flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground;
+  }
+
+  .nav-item.active {
+    @apply bg-accent text-accent-foreground font-medium;
   }
 }

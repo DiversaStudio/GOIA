@@ -1,291 +1,273 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Lock, Database, FileCheck, Users, Plus, ArrowRight, AlertCircle } from "lucide-react"
-import { api } from "@/lib/api"
+import { Badge } from "@/components/ui/badge"
+import { Progress } from "@/components/ui/progress"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
+import {
+  Lock,
+  Plus,
+  FileText,
+  Users,
+  Database,
+  ArrowRight,
+  AlertTriangle,
+  CheckCircle2,
+  Clock,
+} from "lucide-react"
+
+const dataFlows = [
+  {
+    id: "df-001",
+    name: "Customer Data Pipeline",
+    source: "CRM System",
+    destination: "ML Training Pipeline",
+    dataType: "PII",
+    status: "approved",
+    lastReview: "2024-03-10",
+  },
+  {
+    id: "df-002",
+    name: "Transaction Analytics",
+    source: "Payment Gateway",
+    destination: "Fraud Detection Model",
+    dataType: "Financial",
+    status: "approved",
+    lastReview: "2024-03-05",
+  },
+  {
+    id: "df-003",
+    name: "User Behavior Tracking",
+    source: "Web Analytics",
+    destination: "Recommendation Engine",
+    dataType: "Behavioral",
+    status: "pending_review",
+    lastReview: "2024-02-28",
+  },
+]
+
+const dpias = [
+  {
+    id: "dpia-001",
+    name: "Customer Service Chatbot DPIA",
+    system: "Customer Service Chatbot",
+    status: "completed",
+    riskLevel: "medium",
+    createdAt: "2024-02-15",
+  },
+  {
+    id: "dpia-002",
+    name: "Fraud Detection System DPIA",
+    system: "Fraud Detection System",
+    status: "in_progress",
+    riskLevel: "high",
+    createdAt: "2024-03-01",
+  },
+  {
+    id: "dpia-003",
+    name: "Loan Approval Assistant DPIA",
+    system: "Loan Approval Assistant",
+    status: "pending",
+    riskLevel: "high",
+    createdAt: "2024-03-10",
+  },
+]
+
+const subjectRequests = [
+  { type: "Access", count: 24, pending: 3 },
+  { type: "Erasure", count: 12, pending: 2 },
+  { type: "Portability", count: 8, pending: 1 },
+  { type: "Correction", count: 5, pending: 0 },
+]
 
 export default function PrivacyPage() {
-  const [dataFlows, setDataFlows] = useState<any[]>([])
-  const [dpias, setDpias] = useState<any[]>([])
-  const [requests, setRequests] = useState<any[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [flowsRes, dpiasRes, requestsRes] = await Promise.all([
-          api.get<{ items: any[] }>("/api/v1/privacy/data-flows").catch(() => ({ items: [] })),
-          api.get<{ items: any[] }>("/api/v1/privacy/dpias").catch(() => ({ items: [] })),
-          api.get<{ items: any[] }>("/api/v1/privacy/subject-requests").catch(() => ({ items: [] })),
-        ])
-        setDataFlows(flowsRes.items)
-        setDpias(dpiasRes.items)
-        setRequests(requestsRes.items)
-      } catch (error) {
-        console.error("Failed to fetch privacy data:", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
-
-  // Mock stats for demo
-  const stats = {
-    dataFlows: dataFlows.length || 3,
-    dpias: dpias.length || 1,
-    pendingDpias: dpias.filter(d => d.status === "draft" || d.status === "in_review").length || 2,
-    subjectRequests: requests.length || 2,
-  }
-
-  const statusColors: Record<string, string> = {
-    draft: "bg-gray-100 text-gray-800",
-    in_review: "bg-yellow-100 text-yellow-800",
-    approved: "bg-green-100 text-green-800",
-    rejected: "bg-red-100 text-red-800",
-  }
-
   return (
-    <div className="space-y-6">
-      {/* Page Header */}
+    <div className="flex flex-col gap-6">
+      {/* Header */}
       <div className="flex items-center justify-between">
-        <div>
+        <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-bold tracking-tight">Privacy & Data Governance</h1>
-          <p className="text-gray-500">Data flows, DPIA, and data subject request management</p>
+          <p className="text-muted-foreground">
+            Data flow mapping, DPIAs, and privacy compliance management
+          </p>
         </div>
         <div className="flex gap-2">
-          <Link href="/dashboard/privacy/flows/new">
-            <Button variant="outline">
-              <Database className="mr-2 h-4 w-4" />
-              New Data Flow
-            </Button>
-          </Link>
-          <Link href="/dashboard/privacy/dpia/new">
-            <Button>
-              <Plus className="mr-2 h-4 w-4" />
-              New DPIA
-            </Button>
-          </Link>
+          <Button variant="outline" className="gap-2">
+            <Plus className="size-4" />
+            New Data Flow
+          </Button>
+          <Button className="gap-2">
+            <FileText className="size-4" />
+            Start DPIA
+          </Button>
         </div>
       </div>
 
-      {/* Stats Cards */}
+      {/* Stats */}
       <div className="grid gap-4 md:grid-cols-4">
         <Card>
           <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium">Data Flows</CardTitle>
-              <Database className="h-4 w-4 text-purple-500" />
-            </div>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Data Flows</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.dataFlows}</div>
-            <p className="text-xs text-gray-500">Declared flows</p>
+            <div className="flex items-center gap-2">
+              <div className="text-2xl font-bold">28</div>
+              <Database className="size-5 text-muted-foreground" />
+            </div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium">DPIAs</CardTitle>
-              <FileCheck className="h-4 w-4 text-green-500" />
-            </div>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Active DPIAs</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.dpias}</div>
-            <p className="text-xs text-gray-500">Assessments</p>
+            <div className="flex items-center gap-2">
+              <div className="text-2xl font-bold">4</div>
+              <FileText className="size-5 text-muted-foreground" />
+            </div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-orange-600">Pending DPIAs</CardTitle>
-              <AlertCircle className="h-4 w-4 text-orange-500" />
-            </div>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Subject Requests</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-600">{stats.pendingDpias}</div>
-            <p className="text-xs text-gray-500">Awaiting review</p>
+            <div className="flex items-center gap-2">
+              <div className="text-2xl font-bold">6</div>
+              <span className="text-xs text-amber-600">pending</span>
+            </div>
           </CardContent>
         </Card>
-
         <Card>
           <CardHeader className="pb-2">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium">Subject Requests</CardTitle>
-              <Users className="h-4 w-4 text-blue-500" />
-            </div>
+            <CardTitle className="text-sm font-medium text-muted-foreground">Compliance Rate</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.subjectRequests}</div>
-            <p className="text-xs text-gray-500">Open requests</p>
+            <div className="flex items-center gap-2">
+              <div className="text-2xl font-bold text-emerald-600">92%</div>
+              <CheckCircle2 className="size-5 text-emerald-500" />
+            </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Data Flow Declarations */}
+      {/* Data Flows */}
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle>Data Flow Declarations</CardTitle>
-              <CardDescription>Track how personal data flows through your AI systems</CardDescription>
+              <CardTitle>Data Flows</CardTitle>
+              <CardDescription>Tracked data movements across AI systems</CardDescription>
             </div>
-            <Link href="/dashboard/privacy/flows">
-              <Button variant="ghost" size="sm">View All <ArrowRight className="ml-2 h-4 w-4" /></Button>
-            </Link>
+            <Button variant="outline" size="sm">View All</Button>
           </div>
         </CardHeader>
         <CardContent>
-          {loading ? (
-            <div className="text-center py-8 text-gray-500">Loading...</div>
-          ) : dataFlows.length === 0 ? (
-            <div className="text-center py-8">
-              <Database className="mx-auto h-12 w-12 text-gray-400" />
-              <p className="mt-2 text-gray-500">No data flows declared yet</p>
-              <Link href="/dashboard/privacy/flows/new">
-                <Button className="mt-4" size="sm">Create Data Flow</Button>
-              </Link>
-            </div>
-          ) : (
-            <div className="space-y-3">
-              {dataFlows.slice(0, 5).map((flow, idx) => (
-                <div key={flow.id || idx} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div>
-                    <div className="font-medium">{flow.data_type || "Personal Data"}</div>
-                    <div className="text-sm text-gray-500">
-                      {flow.source || "System"} → {flow.destination || "External"}
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className={`px-2 py-1 rounded text-xs ${
-                      flow.is_approved ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"
-                    }`}>
-                      {flow.is_approved ? "Approved" : "Pending"}
-                    </span>
-                  </div>
-                </div>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Flow Name</TableHead>
+                <TableHead>Source</TableHead>
+                <TableHead>Destination</TableHead>
+                <TableHead>Data Type</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead>Last Review</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {dataFlows.map((flow) => (
+                <TableRow key={flow.id}>
+                  <TableCell className="font-medium">{flow.name}</TableCell>
+                  <TableCell className="text-muted-foreground">{flow.source}</TableCell>
+                  <TableCell className="text-muted-foreground">{flow.destination}</TableCell>
+                  <TableCell>
+                    <Badge variant="outline">{flow.dataType}</Badge>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant="outline" className={flow.status === 'approved' ? 'bg-emerald-500/10 text-emerald-600' : 'bg-amber-500/10 text-amber-600'}>
+                      {flow.status.replace('_', ' ')}
+                    </Badge>
+                  </TableCell>
+                  <TableCell className="text-muted-foreground">{flow.lastReview}</TableCell>
+                </TableRow>
               ))}
-            </div>
-          )}
+            </TableBody>
+          </Table>
         </CardContent>
       </Card>
 
-      {/* DPIA Section */}
-      <div className="grid gap-6 md:grid-cols-2">
+      {/* DPIAs & Subject Requests */}
+      <div className="grid gap-4 lg:grid-cols-2">
+        {/* DPIAs */}
         <Card>
           <CardHeader>
             <CardTitle>Data Protection Impact Assessments</CardTitle>
-            <CardDescription>GDPR-compliant DPIA for high-risk AI systems</CardDescription>
+            <CardDescription>Privacy risk assessments for AI systems</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {[1, 2, 3].map((_, idx) => (
-                <div key={idx} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div>
-                    <div className="font-medium">DPIA #{idx + 1}</div>
-                    <div className="text-sm text-gray-500">Credit Scoring Model</div>
+            <div className="flex flex-col gap-4">
+              {dpias.map((dpia) => (
+                <div key={dpia.id} className="flex items-start gap-4 p-3 rounded-lg border">
+                  <div className={`mt-0.5 size-2 rounded-full ${
+                    dpia.status === 'completed' ? 'bg-emerald-500' :
+                    dpia.status === 'in_progress' ? 'bg-blue-500' :
+                    'bg-amber-500'
+                  }`} />
+                  <div className="flex-1">
+                    <p className="font-medium">{dpia.name}</p>
+                    <p className="text-sm text-muted-foreground">{dpia.system}</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <Badge variant="outline" className={dpia.riskLevel === 'high' ? 'bg-red-500/10 text-red-600' : 'bg-amber-500/10 text-amber-600'}>
+                        {dpia.riskLevel} risk
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">{dpia.createdAt}</span>
+                    </div>
                   </div>
-                  <span className={`px-2 py-1 rounded text-xs ${
-                    idx === 0 ? statusColors.approved : 
-                    idx === 1 ? statusColors.in_review : 
-                    statusColors.draft
-                  }`}>
-                    {idx === 0 ? "Approved" : idx === 1 ? "In Review" : "Draft"}
-                  </span>
+                  <Button variant="ghost" size="icon">
+                    <ArrowRight className="size-4" />
+                  </Button>
                 </div>
               ))}
             </div>
           </CardContent>
         </Card>
 
+        {/* Subject Requests */}
         <Card>
           <CardHeader>
-            <CardTitle>Data Subject Requests</CardTitle>
-            <CardDescription>Manage GDPR/privacy requests from individuals</CardDescription>
+            <CardTitle>Subject Requests</CardTitle>
+            <CardDescription>GDPR data subject request tracking</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3">
-              {[
-                { type: "Access", status: "pending", date: "2 days ago" },
-                { type: "Erasure", status: "completed", date: "1 week ago" },
-                { type: "Portability", status: "in_progress", date: "3 days ago" },
-              ].map((req, idx) => (
-                <div key={idx} className="flex items-center justify-between p-3 border rounded-lg">
-                  <div>
-                    <div className="font-medium">{req.type} Request</div>
-                    <div className="text-sm text-gray-500">{req.date}</div>
+            <div className="flex flex-col gap-4">
+              {subjectRequests.map((request, i) => (
+                <div key={i} className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-medium">{request.type}</span>
+                      <span className="text-sm text-muted-foreground">{request.count} total</span>
+                    </div>
+                    <Progress value={(request.count - request.pending) / request.count * 100} className="h-2" />
                   </div>
-                  <span className={`px-2 py-1 rounded text-xs ${
-                    req.status === "completed" ? "bg-green-100 text-green-800" :
-                    req.status === "in_progress" ? "bg-blue-100 text-blue-800" :
-                    "bg-yellow-100 text-yellow-800"
-                  }`}>
-                    {req.status.replace("_", " ")}
-                  </span>
+                  {request.pending > 0 && (
+                    <Badge variant="outline" className="bg-amber-500/10 text-amber-600">
+                      {request.pending} pending
+                    </Badge>
+                  )}
                 </div>
               ))}
             </div>
           </CardContent>
         </Card>
-      </div>
-
-      {/* Quick Actions */}
-      <div className="grid gap-4 md:grid-cols-3">
-        <Link href="/dashboard/privacy/dpia/new">
-          <Card className="hover:border-purple-300 cursor-pointer transition-colors">
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <FileCheck className="h-6 w-6 text-purple-600" />
-                </div>
-                <div>
-                  <h3 className="font-medium">Create DPIA</h3>
-                  <p className="text-sm text-gray-500">Start new assessment</p>
-                </div>
-                <ArrowRight className="ml-auto h-5 w-5 text-gray-400" />
-              </div>
-            </CardContent>
-          </Card>
-        </Link>
-
-        <Link href="/dashboard/privacy/requests">
-          <Card className="hover:border-purple-300 cursor-pointer transition-colors">
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Users className="h-6 w-6 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-medium">Subject Requests</h3>
-                  <p className="text-sm text-gray-500">Manage requests</p>
-                </div>
-                <ArrowRight className="ml-auto h-5 w-5 text-gray-400" />
-              </div>
-            </CardContent>
-          </Card>
-        </Link>
-
-        <Link href="/dashboard/privacy/flows">
-          <Card className="hover:border-purple-300 cursor-pointer transition-colors">
-            <CardContent className="pt-6">
-              <div className="flex items-center space-x-4">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <Database className="h-6 w-6 text-green-600" />
-                </div>
-                <div>
-                  <h3 className="font-medium">Data Flows</h3>
-                  <p className="text-sm text-gray-500">View declarations</p>
-                </div>
-                <ArrowRight className="ml-auto h-5 w-5 text-gray-400" />
-              </div>
-            </CardContent>
-          </Card>
-        </Link>
       </div>
     </div>
   )
