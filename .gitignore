@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$pyo
+*.pyc
+.env
+.venv/
+venv/
+ENV/
+
+# Node
+node_modules/
+.next/
+out/
+
+# IDE
+.vscode/
+.idea/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.log
+*.tmp
+*/*.tmp

@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-geist-sans), sans-serif;
+  background: #f8fafc;
+}
+
+body.dark {
+  background: hsl(240 10% 3.9%);
+  color: hsl(0 0% 95%);
+}
+
+/* Custom styles for GOIA */
+.announcement-bar {
+  background: #1e293b;
+  border-bottom: 1px solid #334155;
+}
+
+@media (prefers-color-scheme: dark) {
+  body.dark {
+    background: hsl(240 10% 3.9%);
+    color: hsl(0 0% 95%);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  body {
+    font-size: 18px;
+  }
+}

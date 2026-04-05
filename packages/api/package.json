@@ -1,0 +1,17 @@
+{
+  "name": "goia-backend",
+  "version": "1.0.0",
+  "description": "GOIA AI Governance Backend - FastAPI",
+  "scripts": {
+    "dev": "uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+    "run": "uvicorn app.main:app --host 0.0.0.0 --port 8000",
+    "test": "pytest -v",
+    "lint": "ruff check app modules",
+    "format": "black app modules",
+    "migrate": "alembic upgrade head"
+  },
+  "devDependencies": {
+    "black": "^24.3.0",
+    "ruff": "^0.1.9"
+  }
+}
