@@ -9,14 +9,14 @@ type Lang = "es" | "en"
 const copy = {
   es: {
     nav: {
-      cta: "Solicitar acceso",
+      cta: "Solicitar demo",
     },
     hero: {
-      tag: "Infraestructura de gobernanza para la IA pública",
+      tag: "Infraestructura de gobernanza para una IA transparente",
       title: "Estructurando la transparencia para la gobernanza de la IA",
       description:
-        "Pasamos del diálogo multilateral a la infraestructura multinodal. GOIA integra auditoría, trazabilidad y participación cívica representada en los sistemas de IA.",
-      ctaPrimary: "Solicitar acceso",
+        "Pasamos del diálogo multilateral a la infraestructura multinodal. GOIA integra auditoría, trazabilidad y participación ciudadana representada en los sistemas de IA.",
+      ctaPrimary: "Solicitar demo",
       ctaSecondary: "Conocer más",
     },
     problem: {
@@ -142,14 +142,14 @@ const copy = {
   },
   en: {
     nav: {
-      cta: "Request access",
+      cta: "Request demo",
     },
     hero: {
-      tag: "Governance infrastructure for public AI",
+      tag: "Governance infrastructure for transparent AI",
       title: "Structuring Transparency for AI Governance",
       description:
-        "We move from multilateral dialogue to multinodal infrastructure. GOIA integrates audit, traceability, and civic participation represented in AI systems.",
-      ctaPrimary: "Request access",
+        "We move from multilateral dialogue to multinodal infrastructure. GOIA integrates audit, traceability, and citizen participation represented in AI systems.",
+      ctaPrimary: "Request demo",
       ctaSecondary: "Learn more",
     },
     problem: {
