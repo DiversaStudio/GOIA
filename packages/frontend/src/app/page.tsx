@@ -2,16 +2,13 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ArrowRight, ArrowUpRight, X as XIcon, Check } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
 
 type Lang = "es" | "en"
 
 const copy = {
   es: {
     nav: {
-      contact: "Contacto",
-      eu: "UE",
-      tools: "Herramientas",
       cta: "Solicitar acceso",
     },
     hero: {
@@ -24,28 +21,19 @@ const copy = {
     },
     problem: {
       title: "El problema",
-      intro:
-        "Los sistemas de IA operan hoy sin marcos de rendición de cuentas adecuados, afectando decisiones críticas en millones de vidas.",
-      items: [
+      lead: "Los sistemas de inteligencia artificial están redefiniendo cómo se toman decisiones en salud, justicia, educación y servicios públicos. Pero esta transformación avanza sin una infraestructura de rendición de cuentas que la sostenga.",
+      tensions: [
         {
-          headline: "Decisiones sin justificación",
-          detail:
-            "Sistemas de IA toman decisiones críticas que no pueden explicar su propio funcionamiento ni sus criterios de evaluación.",
+          concept: "Opacidad estructural",
+          body: "Las decisiones algorítmicas se producen dentro de sistemas que no fueron diseñados para explicarse a sí mismos. La lógica interna queda oculta no por malicia, sino por arquitectura. Quienes son afectados por estas decisiones no tienen acceso a los criterios que las determinan.",
         },
         {
-          headline: "Verificación internacional ausente",
-          detail:
-            "No existen mecanismos efectivos para verificar el cumplimiento de estándares de IA a nivel transfronterizo.",
+          concept: "Ausencia de verificación común",
+          body: "No existe un marco compartido que permita contrastar si un sistema de IA cumple con estándares éticos o legales mínimos. Cada organización evalúa sus propios sistemas con sus propios métodos, sin posibilidad de comparación ni validación externa.",
         },
         {
-          headline: "Participación ciudadana marginal",
-          detail:
-            "La ciudadanía carece de canales reales para influir en el diseño, despliegue y supervisión de sistemas de IA públicos.",
-        },
-        {
-          headline: "Escalabilidad sin control",
-          detail:
-            "La velocidad de adopción de la IA supera a los mecanismos de supervisión, creando riesgos sistémicos desatendidos.",
+          concept: "Participación sin incidencia",
+          body: "Los mecanismos de consulta ciudadana sobre tecnología raramente tienen efecto en el diseño o la operación de los sistemas. La participación se reduce a un trámite formal, desconectado de los procesos reales de decisión.",
         },
       ],
     },
@@ -138,11 +126,7 @@ const copy = {
     whyItMatters: {
       title: "Por qué importa",
       description:
-        "La IA ya está tomando decisiones críticas en los sistemas de salud, justicia, educación y servicios sociales. La falta de transparencia y supervisión ciudadana crea riesgos sistémicos que afectan desproporcionadamente a los grupos más vulnerables. GOIA nace para garantizar que la tecnología sirva al interés público y no al revés.",
-      stat1: "73%",
-      stat1Label: "de ciudadanos desconoce el uso de IA en servicios públicos",
-      stat2: "12x",
-      stat2Label: "más rápida la adopción de IA que su regulación",
+        "La gobernanza de la IA no es un problema técnico. Es un problema de poder: quién decide cómo funcionan los sistemas, quién tiene acceso a esa información y quién puede cuestionarla. Sin infraestructura de rendición de cuentas, la tecnología reproduce y amplifica las asimetrías existentes. GOIA construye la capa de verificación que hace posible la confianza pública en los sistemas de IA.",
     },
     status: {
       title: "En qué estamos",
@@ -153,15 +137,11 @@ const copy = {
     },
     footer: {
       tagline: "Infraestructura de gobernanza para la IA pública",
-      links: ["Contacto", "UE", "Herramientas"],
       copy: "© 2024 GOIA. Todos los derechos reservados.",
     },
   },
   en: {
     nav: {
-      contact: "Contact",
-      eu: "EU",
-      tools: "Tools",
       cta: "Request access",
     },
     hero: {
@@ -174,28 +154,19 @@ const copy = {
     },
     problem: {
       title: "The Problem",
-      intro:
-        "AI systems operate today without adequate accountability frameworks, affecting critical decisions in millions of lives.",
-      items: [
+      lead: "Artificial intelligence systems are redefining how decisions are made in healthcare, justice, education, and public services. But this transformation is advancing without an accountability infrastructure to sustain it.",
+      tensions: [
         {
-          headline: "Decisions without justification",
-          detail:
-            "AI systems make critical decisions that cannot explain their own functioning or evaluation criteria.",
+          concept: "Structural opacity",
+          body: "Algorithmic decisions are produced within systems not designed to explain themselves. The internal logic remains hidden — not by malice, but by architecture. Those affected by these decisions have no access to the criteria that determine them.",
         },
         {
-          headline: "Absent international verification",
-          detail:
-            "There are no effective mechanisms to verify compliance with AI standards at a cross-border level.",
+          concept: "Absence of common verification",
+          body: "There is no shared framework that allows checking whether an AI system meets minimum ethical or legal standards. Each organization evaluates its own systems with its own methods, with no possibility of comparison or external validation.",
         },
         {
-          headline: "Marginal citizen participation",
-          detail:
-            "Citizens lack real channels to influence the design, deployment, and oversight of public AI systems.",
-        },
-        {
-          headline: "Scalability without control",
-          detail:
-            "The speed of AI adoption outpaces oversight mechanisms, creating unaddressed systemic risks.",
+          concept: "Participation without influence",
+          body: "Citizen consultation mechanisms on technology rarely have any effect on the design or operation of systems. Participation is reduced to a formal procedure, disconnected from real decision-making processes.",
         },
       ],
     },
@@ -288,11 +259,7 @@ const copy = {
     whyItMatters: {
       title: "Why it matters",
       description:
-        "AI is already making critical decisions in healthcare, justice, education, and social services. The lack of transparency and citizen oversight creates systemic risks that disproportionately affect the most vulnerable groups. GOIA is created to ensure that technology serves the public interest, not the other way around.",
-      stat1: "73%",
-      stat1Label: "of citizens are unaware of AI use in public services",
-      stat2: "12x",
-      stat2Label: "faster AI adoption than its regulation",
+        "AI governance is not a technical problem. It is a problem of power: who decides how systems work, who has access to that information, and who can question it. Without accountability infrastructure, technology reproduces and amplifies existing asymmetries. GOIA builds the verification layer that makes public trust in AI systems possible.",
     },
     status: {
       title: "Where we are",
@@ -303,7 +270,6 @@ const copy = {
     },
     footer: {
       tagline: "Governance infrastructure for public AI",
-      links: ["Contact", "EU", "Tools"],
       copy: "© 2024 GOIA. All rights reserved.",
     },
   },
@@ -332,26 +298,10 @@ export default function LandingPage() {
         }}
       >
         <div className="container mx-auto px-6 flex h-14 items-center justify-between max-w-6xl">
-          {/* Logo */}
           <Link href="/" className="text-base font-semibold tracking-widest uppercase" style={{ color: "#E8E2D6", letterSpacing: "0.2em" }}>
             GOIA
           </Link>
 
-          {/* Nav */}
-          <nav className="hidden md:flex items-center gap-8">
-            {[t.nav.contact, t.nav.eu, t.nav.tools].map((label) => (
-              <Link
-                key={label}
-                href="#"
-                className="text-xs tracking-wider uppercase transition-opacity hover:opacity-100"
-                style={{ color: "#A8B89A", opacity: 0.8, letterSpacing: "0.12em" }}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Right actions */}
           <div className="flex items-center gap-4">
             <button
               onClick={() => setLang(lang === "es" ? "en" : "es")}
@@ -409,18 +359,11 @@ export default function LandingPage() {
         </div>
 
         {/* Right — visual */}
-        <div
-          className="relative overflow-hidden min-h-[50vh] md:min-h-0"
-          style={{ backgroundColor: "#1F2B1A" }}
-        >
-          {/* Abstract architectural pattern */}
+        <div className="relative overflow-hidden min-h-[50vh] md:min-h-0" style={{ backgroundColor: "#1F2B1A" }}>
           <div
             className="absolute inset-0"
-            style={{
-              background: "linear-gradient(135deg, #2D3B25 0%, #1A2418 40%, #0F1A0D 100%)",
-            }}
+            style={{ background: "linear-gradient(135deg, #2D3B25 0%, #1A2418 40%, #0F1A0D 100%)" }}
           />
-          {/* Grid lines */}
           <div
             className="absolute inset-0"
             style={{
@@ -429,36 +372,28 @@ export default function LandingPage() {
               backgroundSize: "60px 60px",
             }}
           />
-          {/* Radial glow */}
           <div
             className="absolute"
             style={{
-              top: "30%",
-              left: "40%",
-              width: "300px",
-              height: "300px",
+              top: "30%", left: "40%", width: "300px", height: "300px",
               borderRadius: "50%",
               background: "radial-gradient(circle, rgba(107,140,90,0.25) 0%, transparent 70%)",
               transform: "translate(-50%, -50%)",
             }}
           />
-          {/* Concentric circles */}
           {[200, 300, 400, 500].map((size, i) => (
             <div
               key={i}
               className="absolute"
               style={{
-                top: "50%",
-                left: "50%",
-                width: `${size}px`,
-                height: `${size}px`,
+                top: "50%", left: "50%",
+                width: `${size}px`, height: `${size}px`,
                 borderRadius: "50%",
                 border: "1px solid rgba(107,140,90,0.15)",
                 transform: "translate(-50%, -50%)",
               }}
             />
           ))}
-          {/* Corner label */}
           <div
             className="absolute bottom-6 right-6 text-right"
             style={{ color: "rgba(168,184,154,0.5)", fontSize: "10px", letterSpacing: "0.15em" }}
@@ -473,35 +408,33 @@ export default function LandingPage() {
       <section id="problem" className="py-24 md:py-32" style={{ backgroundColor: "#FAFAF7" }}>
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid md:grid-cols-[1fr,2fr] gap-16 items-start">
-            {/* Left — heading */}
-            <div>
-              <h2 className="text-3xl font-bold mb-4" style={{ color: "#1C2419" }}>
+            {/* Left — heading + lead */}
+            <div className="md:sticky md:top-24">
+              <h2 className="text-3xl font-bold mb-5" style={{ color: "#1C2419" }}>
                 {t.problem.title}
               </h2>
               <p className="text-sm leading-relaxed" style={{ color: "#6B8C5A" }}>
-                {t.problem.intro}
+                {t.problem.lead}
               </p>
             </div>
 
-            {/* Right — items */}
-            <div className="space-y-6">
-              {t.problem.items.map((item, i) => (
+            {/* Right — narrative tensions */}
+            <div className="space-y-0" style={{ borderTop: "1px solid #E4DDD2" }}>
+              {t.problem.tensions.map((tension, i) => (
                 <div
                   key={i}
-                  className="flex gap-4 p-5 rounded-sm"
-                  style={{ backgroundColor: "#F2EDE3", borderLeft: "3px solid #C25B3A" }}
+                  className="py-8"
+                  style={{ borderBottom: "1px solid #E4DDD2" }}
                 >
-                  <div className="mt-0.5 flex-shrink-0" style={{ color: "#C25B3A" }}>
-                    <XIcon size={16} strokeWidth={2.5} />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold mb-1" style={{ color: "#1C2419" }}>
-                      {item.headline}
-                    </p>
-                    <p className="text-sm leading-relaxed" style={{ color: "#4A5D42" }}>
-                      {item.detail}
-                    </p>
-                  </div>
+                  <p
+                    className="text-xs font-mono tracking-widest uppercase mb-3"
+                    style={{ color: "#6B8C5A" }}
+                  >
+                    {String(i + 1).padStart(2, "0")} — {tension.concept}
+                  </p>
+                  <p className="text-base leading-relaxed" style={{ color: "#3A4A35" }}>
+                    {tension.body}
+                  </p>
                 </div>
               ))}
             </div>
@@ -523,15 +456,8 @@ export default function LandingPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px" style={{ backgroundColor: "#D5CFC4" }}>
             {t.proposal.pillars.map((pillar, i) => (
-              <div
-                key={i}
-                className="p-8 flex flex-col gap-4"
-                style={{ backgroundColor: "#F2EDE3" }}
-              >
-                <span
-                  className="text-xs font-mono tracking-widest"
-                  style={{ color: "#6B8C5A" }}
-                >
+              <div key={i} className="p-8 flex flex-col gap-4" style={{ backgroundColor: "#F2EDE3" }}>
+                <span className="text-xs font-mono tracking-widest" style={{ color: "#6B8C5A" }}>
                   {pillar.number}
                 </span>
                 <h3 className="text-lg font-semibold" style={{ color: "#1C2419" }}>
@@ -566,10 +492,7 @@ export default function LandingPage() {
                 style={{ backgroundColor: "#FFFFFF", borderColor: "#E4DDD2" }}
               >
                 <div className="flex items-start gap-4 mb-5">
-                  <span
-                    className="text-2xl leading-none mt-0.5"
-                    style={{ color: "#6B8C5A", fontFamily: "monospace" }}
-                  >
+                  <span className="text-2xl leading-none mt-0.5" style={{ color: "#6B8C5A", fontFamily: "monospace" }}>
                     {mod.icon}
                   </span>
                   <div>
@@ -596,25 +519,20 @@ export default function LandingPage() {
       </section>
 
       {/* ── POR QUÉ IMPORTA ────────────────────────────────────────────── */}
-      <section id="why" className="grid md:grid-cols-2 min-h-[70vh]" style={{ backgroundColor: "#0F1A0D" }}>
+      <section id="why" className="grid md:grid-cols-2 min-h-[60vh]" style={{ backgroundColor: "#0F1A0D" }}>
         {/* Left — abstract visual */}
         <div className="relative overflow-hidden min-h-[40vh] md:min-h-0">
           <div
             className="absolute inset-0"
-            style={{
-              background: "radial-gradient(ellipse at center, #2D3B25 0%, #0F1A0D 70%)",
-            }}
+            style={{ background: "radial-gradient(ellipse at center, #2D3B25 0%, #0F1A0D 70%)" }}
           />
-          {/* Spiral effect */}
           {[60, 100, 140, 180, 220, 260, 300].map((size, i) => (
             <div
               key={i}
               className="absolute"
               style={{
-                top: "50%",
-                left: "50%",
-                width: `${size}px`,
-                height: `${size}px`,
+                top: "50%", left: "50%",
+                width: `${size}px`, height: `${size}px`,
                 borderRadius: "50%",
                 border: `1px solid rgba(107,140,90,${0.35 - i * 0.04})`,
                 transform: `translate(-50%, -50%) rotate(${i * 22}deg)`,
@@ -625,38 +543,23 @@ export default function LandingPage() {
             className="absolute inset-0 flex items-end p-8"
             style={{ background: "linear-gradient(to top, rgba(15,26,13,0.8) 0%, transparent 60%)" }}
           >
-            <span className="text-xs uppercase tracking-widest" style={{ color: "rgba(168,184,154,0.5)", letterSpacing: "0.2em" }}>
+            <span
+              className="text-xs uppercase tracking-widest"
+              style={{ color: "rgba(168,184,154,0.5)", letterSpacing: "0.2em" }}
+            >
               AI · Society · Governance
             </span>
           </div>
         </div>
 
-        {/* Right — text */}
+        {/* Right — text only, no stats */}
         <div className="flex flex-col justify-center px-10 md:px-16 py-20 md:py-0">
           <h2 className="text-3xl font-bold mb-6" style={{ color: "#E8E2D6" }}>
             {t.whyItMatters.title}
           </h2>
-          <p className="text-base leading-relaxed mb-12" style={{ color: "#A8B89A" }}>
+          <p className="text-base leading-relaxed" style={{ color: "#A8B89A" }}>
             {t.whyItMatters.description}
           </p>
-          <div className="grid grid-cols-2 gap-8" style={{ borderTop: "1px solid rgba(107,140,90,0.25)", paddingTop: "2rem" }}>
-            <div>
-              <div className="text-4xl font-bold mb-1" style={{ color: "#6B8C5A" }}>
-                {t.whyItMatters.stat1}
-              </div>
-              <div className="text-xs leading-relaxed" style={{ color: "#7A9469" }}>
-                {t.whyItMatters.stat1Label}
-              </div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-1" style={{ color: "#6B8C5A" }}>
-                {t.whyItMatters.stat2}
-              </div>
-              <div className="text-xs leading-relaxed" style={{ color: "#7A9469" }}>
-                {t.whyItMatters.stat2Label}
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -700,25 +603,16 @@ export default function LandingPage() {
             style={{ borderBottom: "1px solid rgba(107,140,90,0.2)" }}
           >
             <div>
-              <div className="text-sm font-semibold tracking-widest uppercase mb-1" style={{ color: "#E8E2D6", letterSpacing: "0.2em" }}>
+              <div
+                className="text-sm font-semibold tracking-widest uppercase mb-1"
+                style={{ color: "#E8E2D6", letterSpacing: "0.2em" }}
+              >
                 GOIA
               </div>
               <div className="text-xs" style={{ color: "#7A9469" }}>
                 {t.footer.tagline}
               </div>
             </div>
-            <nav className="flex gap-6">
-              {t.footer.links.map((link) => (
-                <Link
-                  key={link}
-                  href="#"
-                  className="text-xs tracking-wider uppercase transition-opacity hover:opacity-100"
-                  style={{ color: "#7A9469", opacity: 0.7, letterSpacing: "0.1em" }}
-                >
-                  {link}
-                </Link>
-              ))}
-            </nav>
           </div>
           <div className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs" style={{ color: "rgba(122,148,105,0.5)" }}>
