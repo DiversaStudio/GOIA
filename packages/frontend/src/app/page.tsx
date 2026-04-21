@@ -618,13 +618,24 @@ export default function LandingPage() {
             <p className="text-xs" style={{ color: "rgba(122,148,105,0.5)" }}>
               {t.footer.copy}
             </p>
-            <button
-              onClick={() => setLang(lang === "es" ? "en" : "es")}
-              className="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-sm transition-colors hover:opacity-80"
-              style={{ color: "#7A9469", border: "1px solid rgba(107,140,90,0.25)" }}
-            >
-              {lang === "es" ? "Switch to English" : "Cambiar a Español"}
-            </button>
+            <div className="flex items-center gap-4">
+              <a
+                href="https://diversa.studio/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs transition-opacity hover:opacity-100"
+                style={{ color: "rgba(122,148,105,0.6)" }}
+              >
+                Designed and developed with ❤️ by Diversa
+              </a>
+              <button
+                onClick={() => setLang(lang === "es" ? "en" : "es")}
+                className="text-xs font-medium tracking-wider uppercase px-3 py-1 rounded-sm transition-colors hover:opacity-80"
+                style={{ color: "#7A9469", border: "1px solid rgba(107,140,90,0.25)" }}
+              >
+                {lang === "es" ? "Switch to English" : "Cambiar a Español"}
+              </button>
+            </div>
           </div>
         </div>
       </footer>
