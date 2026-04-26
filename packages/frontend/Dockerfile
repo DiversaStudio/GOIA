@@ -2,15 +2,14 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY ./package.json ./
-RUN npm install
-RUN npm install geist
+COPY package.json package-lock.json* ./
+RUN npm ci
 
-COPY ./src/ ./src/
-COPY ./next.config.js ./next.config.js
-COPY ./tsconfig.json ./tsconfig.json
+COPY next.config.js tsconfig.json postcss.config.js tailwind.config.js components.json ./
+COPY src/ ./src/
 
 RUN npm run build
 
 EXPOSE 3000
+ENV HOSTNAME="0.0.0.0"
 CMD ["npm", "start"]
